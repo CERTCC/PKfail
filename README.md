@@ -3,7 +3,9 @@ Mitigations &amp; detection tools for VU#455367 and #VU943302
 
 
 ## Introduction
-This document provides instructions on how to update the UEFI Secure Boot Platform Key (PK) on devices which contain the AMI Test key. The PowerShell script provided below can be used to update the PK to Windows OEM Devices PK key (Windows OEM PK). This can be used as a temporary solution until a firmware update is available to fix this vulnerability. The guidance contains the following files:
+This document provides instructions on how to update the UEFI Secure Boot Platform Key (PK) on devices which contain the AMI Test key. The PowerShell script provided below can be used to update the PK to Windows OEM Devices PK key (Windows OEM PK). This can be used as a temporary solution until a firmware update is available to fix this vulnerability. Please check for OEM updates prior to using these scripts. 
+
+The guidance contains the following files:
 - Updateamipk.ps1
 - Ami-windowspk_content.bin
 - \Ami-windowspk_signatures
