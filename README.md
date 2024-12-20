@@ -8,11 +8,11 @@ This document provides instructions on how to update the UEFI Secure Boot Platfo
 The guidance contains the following files:
 - Updateamipk.ps1
 - Ami-windowspk_content.bin
-- \Ami-windowspk_signatures
-  - AmiTestPk00.p7
-  - AmiTestPk01.p7
-  - AmiTestPk02.p7
-  - AmiTestPk03.p7
+- AmiTestPk00.p7
+- AmiTestPk01.p7
+- AmiTestPk02.p7
+- AmiTestPk03.p7
+  
 
 ## Who does this guidance apply to?
 This guidance applies to devices that are Secure Boot capable and where an AMI Test key is being used as its PK. OEMs are free to edit the scripts to use their own Platform Key in place of the Microsoft PK. Follow the steps below to determine if the UEFI PK update is needed on the target device:
@@ -49,7 +49,7 @@ The script doesn't change the default PK value. It must be run every time Secure
    - AmiTestPk03.p7
 4. Open an admin PowerShell window and `cd` to the directory above.
 5. Run `Updateamipk.ps1 -confirm` to verify AMI Test key is in PK and update is required.
-6. Run `Updateamipk.ps1 > 2>&1 \n Out-File -Filepath Updateamipklog.txt`.
+6. Run `Updateamipk.ps1 2>&1 | Out-File -Filepath Updateamipklog.txt`.
 7. If the update is successful, the script should reboot device automatically.
 8. Once the device comes back, open an admin PowerShell window and `cd` to the directory again.
 9. Run `Updateamipk.ps1 -confirm` to verify Windows OEM PK is set now.
