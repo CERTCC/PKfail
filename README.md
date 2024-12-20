@@ -1,5 +1,5 @@
 # PKfail
-Mitigations &amp; detection tools for VU#455367 and #VU943302
+Mitigations &amp; detection tools for [VU#455367](https://kb.cert.org/vuls/id/455367)
 
 
 ## Introduction
