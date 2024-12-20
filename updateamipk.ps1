@@ -181,7 +181,7 @@ Write-Output "[INFO] Verified."
 Write-Output "[INFO] Checking Bitlocker status..."
 
 $operatingsystemvolume = Get-BitlockerVolume | where {$_.VolumeType -eq "OperatingSystem" -and $_.ProtectionStatus -eq "On"}
-$bitlockersuspended = $false
+$bitlockersuspended = $null
 
 if ($operatingsystemvolume)
 {
@@ -204,7 +204,7 @@ if ($operatingsystemvolume)
     }
 
     Write-Output "[INFO] Bitlocker is suspended on Operating System volume."
-    $bitlockersuspended = $true
+    $bitlockersuspended = $mountpoint
 }
 else
 {
@@ -221,10 +221,17 @@ if ($uefivar)
 }
 else{
     Write-Output "[ERROR] Failed setting PK variable."
-    if ($bitclokersuspended)
+    if ($bitlockersuspended -ne $null)
     {
-        Write-Output "[INFO] Bitlocker was previously suspended. Restarting computer to resume Bitlocker protection..."
-        Restart-Computer -force
+        Write-Output "[INFO] Bitlocker was previously suspended. Resuming Bitlocker protection..."
+        Resume-Bitlocker -Mountpoint $bitlockersuspended
+        if(Get-BitlockerVolume | where {$_.VolumeType -eq "OperatingSystem" -and $_.ProtectionStatus -eq "On"})
+        {
+            Write-Output "[INFO] Success."
+            Write-Output "[INFO] Exiting: 0"
+            exit 0
+        }
+        Write-Output "[ERROR] Failed resuming Bitlocker. Please resume Bitlocker manually from Bitlocker Drive Encryption setting page."
     }
     Write-Output "[ERROR] Exiting: 1"
     exit 1
