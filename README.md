@@ -49,7 +49,7 @@ The script doesn't change the default PK value. It must be run every time Secure
    - AmiTestPk03.p7
 4. Open an admin PowerShell window and `cd` to the directory above.
 5. Run `Updateamipk.ps1 -confirm` to verify AMI Test key is in PK and update is required.
-6. Run `Updateamipk.ps1 > 2>&1 \n Out-File -Filepath Updateamipklog.txt`.
+6. Run `Updateamipk.ps1 > 2>&1 | Out-File -Filepath Updateamipklog.txt'
 7. If the update is successful, the script should reboot device automatically.
 8. Once the device comes back, open an admin PowerShell window and `cd` to the directory again.
 9. Run `Updateamipk.ps1 -confirm` to verify Windows OEM PK is set now.
